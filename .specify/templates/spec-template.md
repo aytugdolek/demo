@@ -100,6 +100,17 @@
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
+## Assumptions *(mandatory)*
+
+- **A-001**: [Document a reasonable default the feature relies on]
+- **A-002**: [Document an environment, user, or workflow assumption]
+
+## External Data Contracts & Dependencies *(include if feature uses external systems or persisted data)*
+
+- **External Source**: [Dataset, API, file source, or upstream contract]
+- **Contract Impact**: [What fields, schemas, commands, or message shapes matter]
+- **Persistence Impact**: [Whether storage, migrations, or cache behavior changes]
+
 ## Success Criteria *(mandatory)*
 
 <!--
