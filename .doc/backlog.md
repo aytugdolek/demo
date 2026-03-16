@@ -30,7 +30,7 @@ with the constitution:
 
 ## Recommended Features
 
-### Feature 1 - Solution Skeleton
+### Feature 1 - Solution Skeleton [COMPLETED]
 
 **Branch Name**: `001-solution-skeleton`
 
