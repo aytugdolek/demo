@@ -17,6 +17,15 @@ internal sealed class CliCommandRunner
         IReadOnlyDictionary<string, string?>? environmentVariables = null,
         CancellationToken cancellationToken = default)
     {
+        return await RunAsync(arguments, null, environmentVariables, cancellationToken);
+    }
+
+    public async Task<CliCommandResult> RunAsync(
+        IReadOnlyCollection<string> arguments,
+        IReadOnlyCollection<string>? standardInputLines = null,
+        IReadOnlyDictionary<string, string?>? environmentVariables = null,
+        CancellationToken cancellationToken = default)
+    {
         var outputBuilder = new StringBuilder();
         var errorBuilder = new StringBuilder();
 
@@ -29,6 +38,7 @@ internal sealed class CliCommandRunner
                 WorkingDirectory = _repositoryRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
+                RedirectStandardInput = standardInputLines is not null,
                 UseShellExecute = false,
             },
             EnableRaisingEvents = true,
@@ -67,6 +77,16 @@ internal sealed class CliCommandRunner
         process.Start();
         process.BeginOutputReadLine();
         process.BeginErrorReadLine();
+
+        if (standardInputLines is not null)
+        {
+            foreach (var line in standardInputLines)
+            {
+                await process.StandardInput.WriteLineAsync(line.AsMemory(), cancellationToken);
+            }
+
+            process.StandardInput.Close();
+        }
 
         await process.WaitForExitAsync(cancellationToken);
 

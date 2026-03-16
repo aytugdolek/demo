@@ -13,7 +13,7 @@ public sealed class SolutionProjectTests
             new SolutionProject("Core", "src/Core/Colorado.BusinessEntityTransactionHistory.Core.csproj", "Core", "Library", [], ["Business rules"]),
             new SolutionProject("Application", "src/Application/Colorado.BusinessEntityTransactionHistory.Application.csproj", "Application", "Library", ["Core"], ["Use cases"]),
             new SolutionProject("Infrastructure", "src/Infrastructure/Colorado.BusinessEntityTransactionHistory.Infrastructure.csproj", "Infrastructure", "Library", ["Application", "Core"], ["Adapters"]),
-            new SolutionProject("Cli", "src/Cli/Colorado.BusinessEntityTransactionHistory.Cli.csproj", "Cli", "Exe", ["Application"], ["Terminal entry point"]),
+            new SolutionProject("Cli", "src/Cli/Colorado.BusinessEntityTransactionHistory.Cli.csproj", "Cli", "Exe", ["Application", "Infrastructure"], ["Terminal entry point", "Composition root"]),
         };
 
         var repositoryRoot = ResolveRepositoryRoot();

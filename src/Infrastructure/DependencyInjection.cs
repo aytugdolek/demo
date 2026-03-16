@@ -22,7 +22,7 @@ public static class DependencyInjection
                 options.ConnectionString = configuration.GetConnectionString("DemoDb") ?? string.Empty;
             });
 
-        services.AddSingleton<IRemoteTransactionHistoryPort, PlaceholderRemoteTransactionHistoryAdapter>();
+        services.AddHttpClient<IRemoteTransactionHistoryPort, SocrataTransactionHistoryAdapter>();
         services.AddSingleton<IPersistencePort, PlaceholderPersistenceAdapter>();
 
         return services;

@@ -32,3 +32,9 @@ exports/
 
 # Tool-generated local metadata
 .specify/init-options.json
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
