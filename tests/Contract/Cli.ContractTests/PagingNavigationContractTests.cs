@@ -8,10 +8,11 @@ public sealed class PagingNavigationContractTests
     public async Task Paging_session_moves_forward_and_backward_between_pages()
     {
         var runner = new CliCommandRunner();
+    var appToken = Guid.NewGuid().ToString("N");
         var responsePattern = CreateResponseFiles();
         var environmentVariables = new Dictionary<string, string?>
         {
-            ["Socrata__AppToken"] = "demo-token",
+      ["Socrata__AppToken"] = appToken,
             ["ConnectionStrings__DemoDb"] = "Server=localhost\\DEMO;Database=DemoDb;Integrated Security=True;Connect Timeout=0;TrustServerCertificate=True;",
             ["Socrata__MockResponsePath"] = responsePattern,
         };

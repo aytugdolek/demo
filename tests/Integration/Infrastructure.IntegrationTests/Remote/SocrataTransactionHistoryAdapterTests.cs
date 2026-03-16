@@ -12,6 +12,7 @@ public sealed class SocrataTransactionHistoryAdapterTests
     [Fact]
     public async Task Get_page_maps_the_first_page_of_records()
     {
+                var appToken = Guid.NewGuid().ToString("N");
         const string json = """
         {
           "results": [
@@ -34,7 +35,7 @@ public sealed class SocrataTransactionHistoryAdapterTests
         };
         var adapter = new SocrataTransactionHistoryAdapter(
             httpClient,
-            Options.Create(new SocrataOptions { AppToken = "demo-token" }));
+            Options.Create(new SocrataOptions { AppToken = appToken }));
 
         var page = await adapter.GetPageAsync(new RemoteTransactionHistoryQuery(1), CancellationToken.None);
 

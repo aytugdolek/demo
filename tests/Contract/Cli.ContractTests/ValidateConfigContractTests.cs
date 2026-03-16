@@ -8,9 +8,10 @@ public sealed class ValidateConfigContractTests
     public async Task Validate_config_returns_success_when_required_values_are_present()
     {
         var runner = new CliCommandRunner();
+        var appToken = Guid.NewGuid().ToString("N");
         var environmentVariables = new Dictionary<string, string?>
         {
-            ["Socrata__AppToken"] = "demo-token",
+            ["Socrata__AppToken"] = appToken,
             ["ConnectionStrings__DemoDb"] = "Server=localhost\\DEMO;Database=DemoDb;Integrated Security=True;Connect Timeout=0;TrustServerCertificate=True;",
         };
 

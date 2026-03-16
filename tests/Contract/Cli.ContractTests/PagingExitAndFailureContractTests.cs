@@ -8,6 +8,7 @@ public sealed class PagingExitAndFailureContractTests
     public async Task Quit_input_exits_cleanly_from_an_active_session()
     {
         var runner = new CliCommandRunner();
+    var appToken = Guid.NewGuid().ToString("N");
         var responseFile = Path.Combine(Path.GetTempPath(), $"paging-quit-{Guid.NewGuid():N}.json");
         File.WriteAllText(responseFile, """
         {
@@ -25,7 +26,7 @@ public sealed class PagingExitAndFailureContractTests
 
         var environmentVariables = new Dictionary<string, string?>
         {
-            ["Socrata__AppToken"] = "demo-token",
+      ["Socrata__AppToken"] = appToken,
             ["ConnectionStrings__DemoDb"] = "Server=localhost\\DEMO;Database=DemoDb;Integrated Security=True;Connect Timeout=0;TrustServerCertificate=True;",
             ["Socrata__MockResponsePath"] = responseFile,
         };

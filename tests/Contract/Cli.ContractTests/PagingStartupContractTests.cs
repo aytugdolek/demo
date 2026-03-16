@@ -8,10 +8,11 @@ public sealed class PagingStartupContractTests
     public async Task No_arguments_start_the_paging_session_and_render_the_first_page()
     {
         var runner = new CliCommandRunner();
+        var appToken = Guid.NewGuid().ToString("N");
         var responseFile = CreateResponseFile();
         var environmentVariables = new Dictionary<string, string?>
         {
-            ["Socrata__AppToken"] = "demo-token",
+            ["Socrata__AppToken"] = appToken,
             ["ConnectionStrings__DemoDb"] = "Server=localhost\\DEMO;Database=DemoDb;Integrated Security=True;Connect Timeout=0;TrustServerCertificate=True;",
             ["Socrata__MockResponsePath"] = responseFile,
         };

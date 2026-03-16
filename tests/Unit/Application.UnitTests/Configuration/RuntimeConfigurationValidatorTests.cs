@@ -19,7 +19,7 @@ public sealed class RuntimeConfigurationValidatorTests
     [Fact]
     public void Validate_returns_failure_for_an_unparseable_connection_string()
     {
-        var validator = CreateValidator(appToken: "demo-token", connectionString: "Server");
+        var validator = CreateValidator(appToken: Guid.NewGuid().ToString("N"), connectionString: "Server");
 
         var outcomes = validator.Validate();
 
@@ -30,7 +30,7 @@ public sealed class RuntimeConfigurationValidatorTests
     public void Validate_returns_success_when_required_values_are_valid()
     {
         var validator = CreateValidator(
-            appToken: "demo-token",
+            appToken: Guid.NewGuid().ToString("N"),
             connectionString: "Server=localhost\\DEMO;Database=DemoDb;Integrated Security=True;Connect Timeout=0;TrustServerCertificate=True;");
 
         var outcomes = validator.Validate();

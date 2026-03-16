@@ -12,13 +12,14 @@ public sealed class SocrataPagingIntegrationTests
     [Fact]
     public async Task Adapter_returns_different_records_for_different_page_requests()
     {
+    var appToken = Guid.NewGuid().ToString("N");
         var httpClient = new HttpClient(new PagingHttpMessageHandler())
         {
             BaseAddress = new Uri("https://data.colorado.gov/api/v3/views/casm-dbbj/"),
         };
         var adapter = new SocrataTransactionHistoryAdapter(
             httpClient,
-            Options.Create(new SocrataOptions { AppToken = "demo-token" }));
+      Options.Create(new SocrataOptions { AppToken = appToken }));
 
         var firstPage = await adapter.GetPageAsync(new RemoteTransactionHistoryQuery(1), CancellationToken.None);
         var secondPage = await adapter.GetPageAsync(new RemoteTransactionHistoryQuery(2), CancellationToken.None);

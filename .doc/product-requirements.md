@@ -39,7 +39,7 @@ The current public documentation exposes these primary fields:
 ## External API Configuration
 
 - API provider: `dev.socrata.com`
-- App token: `9nXi5FmwW1AwxtyMIaHBZhkuo`
+- App token: configure locally through `Socrata__AppToken`; no token value is stored in the repository.
 
 ## User Experience
 

@@ -11,9 +11,10 @@ public sealed class ConfigurationBindingIntegrationTests
     [Fact]
     public void Infrastructure_registration_binds_runtime_configuration_options()
     {
+        var appToken = Guid.NewGuid().ToString("N");
         var values = new Dictionary<string, string?>
         {
-            ["Socrata:AppToken"] = "demo-token",
+            ["Socrata:AppToken"] = appToken,
             ["ConnectionStrings:DemoDb"] = "Server=localhost\\DEMO;Database=DemoDb;Integrated Security=True;Connect Timeout=0;TrustServerCertificate=True;",
         };
 
@@ -29,7 +30,7 @@ public sealed class ConfigurationBindingIntegrationTests
         var socrataOptions = provider.GetRequiredService<IOptions<SocrataOptions>>().Value;
         var demoDbOptions = provider.GetRequiredService<IOptions<DemoDbOptions>>().Value;
 
-        Assert.Equal("demo-token", socrataOptions.AppToken);
+        Assert.Equal(appToken, socrataOptions.AppToken);
         Assert.Contains("Server=localhost\\DEMO", demoDbOptions.ConnectionString, StringComparison.Ordinal);
     }
 }

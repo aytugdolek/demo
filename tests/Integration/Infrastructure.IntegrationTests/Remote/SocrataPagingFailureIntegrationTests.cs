@@ -12,8 +12,9 @@ public sealed class SocrataPagingFailureIntegrationTests
     [Fact]
     public async Task Empty_results_return_an_empty_page()
     {
+        var appToken = Guid.NewGuid().ToString("N");
         var httpClient = new HttpClient(new StaticHttpMessageHandler(HttpStatusCode.OK, "{\"results\":[]}"));
-        var adapter = new SocrataTransactionHistoryAdapter(httpClient, Options.Create(new SocrataOptions { AppToken = "demo-token" }));
+        var adapter = new SocrataTransactionHistoryAdapter(httpClient, Options.Create(new SocrataOptions { AppToken = appToken }));
 
         var page = await adapter.GetPageAsync(new RemoteTransactionHistoryQuery(2), CancellationToken.None);
 
@@ -24,8 +25,9 @@ public sealed class SocrataPagingFailureIntegrationTests
     [Fact]
     public async Task Transport_failures_surface_a_clear_message()
     {
+        var appToken = Guid.NewGuid().ToString("N");
         var httpClient = new HttpClient(new StaticHttpMessageHandler(HttpStatusCode.BadGateway, "{\"message\":\"Gateway timeout\"}"));
-        var adapter = new SocrataTransactionHistoryAdapter(httpClient, Options.Create(new SocrataOptions { AppToken = "demo-token" }));
+        var adapter = new SocrataTransactionHistoryAdapter(httpClient, Options.Create(new SocrataOptions { AppToken = appToken }));
 
         var exception = await Assert.ThrowsAsync<InvalidOperationException>(() => adapter.GetPageAsync(new RemoteTransactionHistoryQuery(1), CancellationToken.None));
 
