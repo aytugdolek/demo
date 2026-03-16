@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Colorado.BusinessEntityTransactionHistory.Infrastructure</AssemblyName>
+    <RootNamespace>Colorado.BusinessEntityTransactionHistory.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Colorado.BusinessEntityTransactionHistory.Application.csproj" />
+    <ProjectReference Include="..\Core\Colorado.BusinessEntityTransactionHistory.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentMigrator.Runner" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Colorado.BusinessEntityTransactionHistory.Core</AssemblyName>
+    <RootNamespace>Colorado.BusinessEntityTransactionHistory.Core</RootNamespace>
+  </PropertyGroup>
+</Project>

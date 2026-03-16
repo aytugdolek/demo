@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Colorado.BusinessEntityTransactionHistory.Infrastructure.IntegrationTests</AssemblyName>
+    <RootNamespace>Colorado.BusinessEntityTransactionHistory.Infrastructure.IntegrationTests</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Infrastructure\Colorado.BusinessEntityTransactionHistory.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\src\Application\Colorado.BusinessEntityTransactionHistory.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Core\Colorado.BusinessEntityTransactionHistory.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
