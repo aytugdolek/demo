@@ -1,0 +1,34 @@
+# Build outputs
+bin/
+obj/
+artifacts/
+TestResults/
+
+# IDE and user-specific files
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.rsuser
+
+# VS Code workspace-local noise
+.vscode/*.code-snippets
+
+# Logs and runtime artifacts
+*.log
+logs/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Local data and exports
+downloads/
+exports/
+*.mdf
+*.ldf
+
+# Tool-generated local metadata
+.specify/init-options.json
