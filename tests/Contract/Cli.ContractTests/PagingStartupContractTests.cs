@@ -22,6 +22,7 @@ public sealed class PagingStartupContractTests
         Assert.Equal(0, result.ExitCode);
         Assert.Contains("Page 1", result.StandardOutput, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Transaction ID", result.StandardOutput, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("Download completed successfully", result.StandardOutput, StringComparison.OrdinalIgnoreCase);
         Assert.DoesNotContain("Baseline ready", result.StandardOutput, StringComparison.OrdinalIgnoreCase);
     }
 

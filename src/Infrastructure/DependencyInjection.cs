@@ -4,6 +4,7 @@ using Colorado.BusinessEntityTransactionHistory.Infrastructure.Persistence;
 using Colorado.BusinessEntityTransactionHistory.Infrastructure.Remote;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Colorado.BusinessEntityTransactionHistory.Infrastructure;
 
@@ -23,6 +24,11 @@ public static class DependencyInjection
             });
 
         services.AddHttpClient<IRemoteTransactionHistoryPort, SocrataTransactionHistoryAdapter>();
+        services.AddHttpClient<IFileDownloadPort, FileDownloadAdapter>(client =>
+        {
+            // Large dataset downloads can legitimately exceed the default 100-second timeout.
+            client.Timeout = Timeout.InfiniteTimeSpan;
+        });
         services.AddSingleton<IPersistencePort, PlaceholderPersistenceAdapter>();
 
         return services;

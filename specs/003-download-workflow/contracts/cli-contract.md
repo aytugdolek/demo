@@ -13,6 +13,7 @@ Define the user-visible behavior of the non-interactive `--download` path.
 ## Success Behavior
 
 - The CLI must save the download to a local file.
+- The default local output path is `downloads/casm-dbbj-query.json` under the current working directory.
 - The CLI must report the output path or another equally actionable success message.
 - The command must exit with a success code after the file is written.
 
@@ -21,6 +22,7 @@ Define the user-visible behavior of the non-interactive `--download` path.
 - If the target file already exists, the CLI must fail and leave the existing file unchanged.
 - If the file cannot be written, the CLI must fail with a clear message.
 - If the remote source cannot be retrieved, the CLI must fail with a clear message.
+- If the remote source returns an empty or malformed payload, the CLI must fail with a clear message.
 - Failure cases must not enter the paging flow.
 
 ## Output Expectations

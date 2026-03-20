@@ -15,15 +15,17 @@ internal sealed class CliCommandRunner
     public async Task<CliCommandResult> RunAsync(
         IReadOnlyCollection<string> arguments,
         IReadOnlyDictionary<string, string?>? environmentVariables = null,
+        string? workingDirectory = null,
         CancellationToken cancellationToken = default)
     {
-        return await RunAsync(arguments, null, environmentVariables, cancellationToken);
+        return await RunAsync(arguments, null, environmentVariables, workingDirectory, cancellationToken);
     }
 
     public async Task<CliCommandResult> RunAsync(
         IReadOnlyCollection<string> arguments,
         IReadOnlyCollection<string>? standardInputLines = null,
         IReadOnlyDictionary<string, string?>? environmentVariables = null,
+        string? workingDirectory = null,
         CancellationToken cancellationToken = default)
     {
         var outputBuilder = new StringBuilder();
@@ -34,8 +36,8 @@ internal sealed class CliCommandRunner
             StartInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"run --project src/Cli -- {string.Join(' ', arguments)}",
-                WorkingDirectory = _repositoryRoot,
+                Arguments = $"run --project \"{Path.Combine(_repositoryRoot, "src", "Cli", "Colorado.BusinessEntityTransactionHistory.Cli.csproj")}\" -- {string.Join(' ', arguments)}",
+                WorkingDirectory = workingDirectory ?? _repositoryRoot,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 RedirectStandardInput = standardInputLines is not null,

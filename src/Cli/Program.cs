@@ -11,6 +11,8 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddSingleton<BaselineCommand>();
+builder.Services.AddSingleton<DownloadCommand>();
+builder.Services.AddSingleton<DownloadOutputFormatter>();
 builder.Services.AddSingleton<InteractivePagingCommand>();
 builder.Services.AddSingleton<TransactionHistoryTableRowMapper>();
 builder.Services.AddSingleton<TransactionHistoryTableRenderer>();
@@ -30,6 +32,12 @@ if (args.Contains("--validate-config", StringComparer.OrdinalIgnoreCase))
     return validateConfigCommand.Execute();
 }
 
+if (args.Contains("--download", StringComparer.OrdinalIgnoreCase))
+{
+    var downloadCommand = host.Services.GetRequiredService<DownloadCommand>();
+    return await downloadCommand.ExecuteAsync();
+}
+
 var interactivePagingCommand = host.Services.GetRequiredService<InteractivePagingCommand>();
 return await interactivePagingCommand.ExecuteAsync();
 
@@ -38,6 +46,6 @@ static void ShowHelp()
     AnsiConsole.MarkupLine("[yellow]Colorado Business Entity Transaction History CLI[/]");
     AnsiConsole.MarkupLine("Run without arguments to start the interactive paging workflow.");
     AnsiConsole.MarkupLine("--validate-config  Validate required configuration without calling live integrations.");
-    AnsiConsole.MarkupLine("--download         Reserved for a future slice.");
+    AnsiConsole.MarkupLine("--download         Download the transaction history response to a local file.");
     AnsiConsole.MarkupLine("Paging controls: > for next page, < for previous page, Q to quit.");
 }

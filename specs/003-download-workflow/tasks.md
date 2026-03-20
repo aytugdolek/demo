@@ -23,8 +23,8 @@
 
 **Purpose**: Prepare the existing solution and CLI wiring for a separate download command path without changing user-visible behavior yet.
 
-- [ ] T001 Update CLI and infrastructure project dependencies for download workflow support in src/Cli/Colorado.BusinessEntityTransactionHistory.Cli.csproj, src/Infrastructure/Colorado.BusinessEntityTransactionHistory.Infrastructure.csproj, and tests/Contract/Cli.ContractTests/Colorado.BusinessEntityTransactionHistory.Cli.ContractTests.csproj
-- [ ] T002 Update the CLI entry point to recognize `--download` as a routed command while preserving existing `--validate-config` and default paging behavior in src/Cli/Program.cs
+- [X] T001 Update CLI and infrastructure project dependencies for download workflow support in src/Cli/Colorado.BusinessEntityTransactionHistory.Cli.csproj, src/Infrastructure/Colorado.BusinessEntityTransactionHistory.Infrastructure.csproj, and tests/Contract/Cli.ContractTests/Colorado.BusinessEntityTransactionHistory.Cli.ContractTests.csproj
+- [X] T002 Update the CLI entry point to recognize `--download` as a routed command while preserving existing `--validate-config` and default paging behavior in src/Cli/Program.cs
 
 ---
 
@@ -34,12 +34,12 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T003 Create the download workflow abstraction and request model in src/Application/Abstractions/IFileDownloadPort.cs and src/Application/Downloads/DownloadRequest.cs
-- [ ] T004 [P] Create shared download result and target models in src/Application/Downloads/DownloadResult.cs and src/Application/Downloads/DownloadTarget.cs
-- [ ] T005 [P] Create download orchestration and filename selection support in src/Application/Downloads/DownloadWorkflow.cs and src/Application/Downloads/DownloadFilenamePolicy.cs
-- [ ] T006 Create the file-writing adapter boundary in src/Infrastructure/Persistence/FileDownloadAdapter.cs and register it in src/Infrastructure/DependencyInjection.cs
-- [ ] T007 [P] Extend the CLI command surface for download execution and output formatting in src/Cli/Commands/DownloadCommand.cs and src/Cli/Commands/DownloadOutputFormatter.cs
-- [ ] T008 Update the test support harness to run and assert download command output in tests/Contract/Cli.ContractTests/TestSupport/CliCommandRunner.cs
+- [X] T003 Create the download workflow abstraction and request model in src/Application/Abstractions/IFileDownloadPort.cs and src/Application/Downloads/DownloadRequest.cs
+- [X] T004 [P] Create shared download result and target models in src/Application/Downloads/DownloadResult.cs and src/Application/Downloads/DownloadTarget.cs
+- [X] T005 [P] Create download orchestration and filename selection support in src/Application/Downloads/DownloadWorkflow.cs and src/Application/Downloads/DownloadFilenamePolicy.cs
+- [X] T006 Create the file-writing adapter boundary in src/Infrastructure/Persistence/FileDownloadAdapter.cs and register it in src/Infrastructure/DependencyInjection.cs
+- [X] T007 [P] Extend the CLI command surface for download execution and output formatting in src/Cli/Commands/DownloadCommand.cs and src/Cli/Commands/DownloadOutputFormatter.cs
+- [X] T008 Update the test support harness to run and assert download command output in tests/Contract/Cli.ContractTests/TestSupport/CliCommandRunner.cs
 
 **Checkpoint**: Foundation ready - user story implementation can now begin.
 
@@ -55,17 +55,17 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T009 [P] [US1] Add download success and no-paging contract coverage in tests/Contract/Cli.ContractTests/DownloadWorkflowContractTests.cs
-- [ ] T010 [P] [US1] Add download orchestration unit coverage for successful file creation in tests/Unit/Application.UnitTests/Downloads/DownloadWorkflowTests.cs
-- [ ] T011 [P] [US1] Add file-writing integration coverage for a successful save in tests/Integration/Infrastructure.IntegrationTests/Persistence/FileDownloadAdapterTests.cs
+- [X] T009 [P] [US1] Add download success and no-paging contract coverage in tests/Contract/Cli.ContractTests/DownloadWorkflowContractTests.cs
+- [X] T010 [P] [US1] Add download orchestration unit coverage for successful file creation in tests/Unit/Application.UnitTests/Downloads/DownloadWorkflowTests.cs
+- [X] T011 [P] [US1] Add file-writing integration coverage for a successful save in tests/Integration/Infrastructure.IntegrationTests/Persistence/FileDownloadAdapterTests.cs
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Implement the download orchestration workflow in src/Application/Downloads/DownloadWorkflow.cs and src/Application/Downloads/DownloadResult.cs
-- [ ] T013 [P] [US1] Implement filename and target selection rules in src/Application/Downloads/DownloadFilenamePolicy.cs and src/Application/Downloads/DownloadTarget.cs
-- [ ] T014 [US1] Implement the file-writing adapter in src/Infrastructure/Persistence/FileDownloadAdapter.cs
-- [ ] T015 [US1] Implement the `--download` CLI command and success output in src/Cli/Commands/DownloadCommand.cs and src/Cli/Commands/DownloadOutputFormatter.cs
-- [ ] T016 [US1] Wire the new command into the CLI host and help text in src/Cli/Program.cs
+- [X] T012 [P] [US1] Implement the download orchestration workflow in src/Application/Downloads/DownloadWorkflow.cs and src/Application/Downloads/DownloadResult.cs
+- [X] T013 [P] [US1] Implement filename and target selection rules in src/Application/Downloads/DownloadFilenamePolicy.cs and src/Application/Downloads/DownloadTarget.cs
+- [X] T014 [US1] Implement the file-writing adapter in src/Infrastructure/Persistence/FileDownloadAdapter.cs
+- [X] T015 [US1] Implement the `--download` CLI command and success output in src/Cli/Commands/DownloadCommand.cs and src/Cli/Commands/DownloadOutputFormatter.cs
+- [X] T016 [US1] Wire the new command into the CLI host and help text in src/Cli/Program.cs
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
@@ -79,15 +79,15 @@
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T017 [P] [US2] Add failure-path contract coverage for remote and local write errors in tests/Contract/Cli.ContractTests/DownloadFailureContractTests.cs
-- [ ] T018 [P] [US2] Add download workflow unit coverage for remote failure, empty payload, and file-exists handling in tests/Unit/Application.UnitTests/Downloads/DownloadWorkflowFailureTests.cs
-- [ ] T019 [P] [US2] Add adapter integration coverage for empty or malformed payload handling, existing-file conflict, and write failure in tests/Integration/Infrastructure.IntegrationTests/Persistence/FileDownloadAdapterFailureTests.cs
+- [X] T017 [P] [US2] Add failure-path contract coverage for remote and local write errors in tests/Contract/Cli.ContractTests/DownloadFailureContractTests.cs
+- [X] T018 [P] [US2] Add download workflow unit coverage for remote failure, empty payload, and file-exists handling in tests/Unit/Application.UnitTests/Downloads/DownloadWorkflowFailureTests.cs
+- [X] T019 [P] [US2] Add adapter integration coverage for empty or malformed payload handling, existing-file conflict, and write failure in tests/Integration/Infrastructure.IntegrationTests/Persistence/FileDownloadAdapterFailureTests.cs
 
 ### Implementation for User Story 2
 
-- [ ] T020 [P] [US2] Implement failure mapping and result messaging for remote failure, empty payload, and file-exists cases in src/Application/Downloads/DownloadResult.cs and src/Application/Downloads/DownloadWorkflow.cs
-- [ ] T021 [P] [US2] Implement empty or malformed payload detection, existing-file detection, and write failure handling in src/Infrastructure/Persistence/FileDownloadAdapter.cs
-- [ ] T022 [US2] Implement CLI failure output and non-interactive exit behavior in src/Cli/Commands/DownloadCommand.cs and src/Cli/Program.cs
+- [X] T020 [P] [US2] Implement failure mapping and result messaging for remote failure, empty payload, and file-exists cases in src/Application/Downloads/DownloadResult.cs and src/Application/Downloads/DownloadWorkflow.cs
+- [X] T021 [P] [US2] Implement empty or malformed payload detection, existing-file detection, and write failure handling in src/Infrastructure/Persistence/FileDownloadAdapter.cs
+- [X] T022 [US2] Implement CLI failure output and non-interactive exit behavior in src/Cli/Commands/DownloadCommand.cs and src/Cli/Program.cs
 
 **Checkpoint**: At this point, User Stories 1 and 2 should both work independently.
 
@@ -101,14 +101,14 @@
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T023 [P] [US3] Add no-argument paging regression coverage to confirm the existing interactive path remains unchanged in tests/Contract/Cli.ContractTests/PagingStartupContractTests.cs
-- [ ] T024 [P] [US3] Add CLI routing regression coverage to confirm `--download` does not affect paging startup in tests/Contract/Cli.ContractTests/PagingExitAndFailureContractTests.cs
-- [ ] T025 [P] [US3] Add orchestration coverage to confirm paging and download remain separate in tests/Unit/Application.UnitTests/Downloads/DownloadWorkflowTests.cs
+- [X] T023 [P] [US3] Add no-argument paging regression coverage to confirm the existing interactive path remains unchanged in tests/Contract/Cli.ContractTests/PagingStartupContractTests.cs
+- [X] T024 [P] [US3] Add CLI routing regression coverage to confirm `--download` does not affect paging startup in tests/Contract/Cli.ContractTests/PagingExitAndFailureContractTests.cs
+- [X] T025 [P] [US3] Add orchestration coverage to confirm paging and download remain separate in tests/Unit/Application.UnitTests/Downloads/DownloadWorkflowTests.cs
 
 ### Implementation for User Story 3
 
-- [ ] T026 [US3] Keep the existing paging command path unchanged while routing `--download` to the new command in src/Cli/Program.cs
-- [ ] T027 [US3] Update CLI help and operator text to describe both the paging and download workflows in src/Cli/Program.cs and src/Cli/Commands/DownloadOutputFormatter.cs
+- [X] T026 [US3] Keep the existing paging command path unchanged while routing `--download` to the new command in src/Cli/Program.cs
+- [X] T027 [US3] Update CLI help and operator text to describe both the paging and download workflows in src/Cli/Program.cs and src/Cli/Commands/DownloadOutputFormatter.cs
 
 **Checkpoint**: All user stories should now be independently functional.
 
@@ -118,8 +118,8 @@
 
 **Purpose**: Improve consistency, documentation, and operator validation across the completed feature.
 
-- [ ] T028 [P] Update download workflow documentation and examples in specs/003-download-workflow/quickstart.md and specs/003-download-workflow/contracts/cli-contract.md
-- [ ] T029 Validate the full download workflow against the quickstart steps and align final CLI messaging in src/Cli/Commands/DownloadCommand.cs and specs/003-download-workflow/quickstart.md
+- [X] T028 [P] Update download workflow documentation and examples in specs/003-download-workflow/quickstart.md and specs/003-download-workflow/contracts/cli-contract.md
+- [X] T029 Validate the full download workflow against the quickstart steps and align final CLI messaging in src/Cli/Commands/DownloadCommand.cs and specs/003-download-workflow/quickstart.md
 
 ---
 

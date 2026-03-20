@@ -47,12 +47,13 @@ Expected result:
 
 - The command completes without entering the paging prompt loop.
 - The CLI reports the saved file path.
-- A single local file is created for the run.
+- A single local file is created at `downloads/casm-dbbj-query.json` under the current working directory.
 
 ## Validate Failure Handling
 
 - Run `--download` with the target file already present to confirm the command fails without overwriting it.
 - Remove or invalidate the Socrata app token to confirm the command reports a clear failure message.
+- Point `Socrata__MockResponsePath` at an empty or malformed JSON file if you need to confirm payload validation failures.
 - Run from a directory that cannot be written to if you need to confirm local file-write failures.
 
 ## Notes
